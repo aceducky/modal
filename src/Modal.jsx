@@ -2,23 +2,23 @@ import { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 
 // Modal component using React Portal
-function Modal({ isOpen, onClose, children }) {
+function Modal({ isModalOpen,closeModal, children }) {
   const modalRef = useRef(null);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
-        onClose();
+        closeModal();
       }
     };
 
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
-        onClose();
+        closeModal();
       }
     };
 
-    if (isOpen) {
+    if (isModalOpen) {
       document.body.style.overflow = "hidden";
       document.addEventListener("keydown", handleKeyDown);
       document.addEventListener("mousedown", handleClickOutside);
@@ -30,9 +30,9 @@ function Modal({ isOpen, onClose, children }) {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen, onClose]);
+  }, [isModalOpen, closeModal]);
 
-  if (!isOpen) return null; // if isOpen is set to false the component returns null
+  if (!isModalOpen) return null; // if isOpen is set to false the component returns null
   //important part, modal closing and showing is controlled here
 
   return ReactDOM.createPortal(
@@ -43,7 +43,7 @@ function Modal({ isOpen, onClose, children }) {
       >
         <button
           className="absolute top-4 right-4 text-2xl font-bold text-gray-600 hover:text-gray-800 focus:outline-none"
-          onClick={onClose}
+          onClick={closeModal}
         >
           &times;
         </button>

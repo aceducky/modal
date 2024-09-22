@@ -16,7 +16,7 @@ function App() {
         Open Modal
       </button>
 
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
         <h2 className="text-xl font-bold mb-4">Modal Dialog</h2>
         <p>This is a modal. You can add more content here.</p>
       </Modal>
