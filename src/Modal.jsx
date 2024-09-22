@@ -32,7 +32,8 @@ function Modal({ isOpen, onClose, children }) {
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (!isOpen) return null; // if isOpen is set to false the component returns null 
+  //important part, modal closing and showing is controlled here
 
   return ReactDOM.createPortal(
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
