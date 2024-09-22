@@ -32,7 +32,7 @@ function Modal({ isOpen, onClose, children }) {
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null; // if isOpen is set to false the component returns null 
+  if (!isOpen) return null; // if isOpen is set to false the component returns null
   //important part, modal closing and showing is controlled here
 
   return ReactDOM.createPortal(
