@@ -38,10 +38,10 @@ function Modal({ isModalOpen, closeModal, children }) {
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
       <div
         ref={modalRef}
-        className="bg-black shadow-md shadow-white p-8 rounded-lg max-w-md w-full relative"
+        className="bg-white shadow-md shadow-black p-8 rounded-lg max-w-md w-full relative text-black"
       >
         <button
-          className="absolute top-4 right-4 text-3xl text-gray-300 hover:text-gray-100 hover:bg-gray-900 focus:outline-none rounded-full px-2 pt-0 pb-1"
+          className="absolute top-4 right-4 text-3xl text-gray-300 hover:text-gray-100 hover:bg-blue-600 focus:outline-none rounded-full h-10 w-10 pt-0 pb-2"
           onClick={closeModal}
         >
           &times;
