@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 
-// Modal component using React Portal
-function Modal({ isModalOpen,closeModal, children }) {
+function Modal({ isModalOpen, closeModal, children }) {
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -50,7 +49,7 @@ function Modal({ isModalOpen,closeModal, children }) {
         <div className="mt-4">{children}</div>
       </div>
     </div>,
-    document.getElementById("modal-root") // Render outside of the main app
+    document.getElementById("modal-root")
   );
 }
 export default Modal;
