@@ -41,7 +41,7 @@ function Modal({ isModalOpen, closeModal, children }) {
         className="bg-black shadow-md shadow-white p-8 rounded-lg max-w-md w-full relative"
       >
         <button
-          className="absolute top-4 right-4 text-2xl font-bold text-gray-600 hover:text-gray-800 focus:outline-none"
+          className="absolute top-4 right-4 text-3xl text-gray-300 hover:text-gray-100 hover:bg-gray-900 focus:outline-none rounded-full px-2 pt-0 pb-1"
           onClick={closeModal}
         >
           &times;
