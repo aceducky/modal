@@ -1,24 +1,21 @@
 import { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 
-const ANIMATION_DURATION = 200;
+const ANIMATION_DURATION = 150;
 
 function Modal({ portalId = "modal-root", open = false, onClose, children }) {
   const [shouldMount, setShouldMount] = useState(open);
   const dialogRef = useRef(null);
-  const previousFocusRef = useRef(null);
 
   useEffect(() => {
     if (open) {
       setShouldMount(true);
       document.body.style.overflow = "hidden";
-      previousFocusRef.current = document.activeElement;
       dialogRef.current?.focus();
     } else {
       const timer = setTimeout(() => {
         setShouldMount(false);
         document.body.style.overflow = "unset";
-        previousFocusRef.current?.focus();
       }, ANIMATION_DURATION);
       return () => clearTimeout(timer);
     }
@@ -51,31 +48,44 @@ function Modal({ portalId = "modal-root", open = false, onClose, children }) {
           from { opacity: 0; }
           to { opacity: 1; }
         }
-        
+
         @keyframes fadeOut {
           from { opacity: 1; }
           to { opacity: 0; }
         }
-        
-        @keyframes scaleUp {
-          from { transform: scale(0.95); opacity: 0; }
-          to { transform: scale(1); opacity: 1; }
+
+        @keyframes subtleScaleUp {
+          from {
+            transform: scale(0.98);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
+          }
         }
-        
-        @keyframes scaleDown {
-          from { transform: scale(1); opacity: 1; }
-          to { transform: scale(0.95); opacity: 0; }
+
+        @keyframes subtleScaleDown {
+          from {
+            transform: scale(1);
+            opacity: 1;
+          }
+          to {
+            transform: scale(0.98);
+            opacity: 0;
+          }
         }
-        
+
         .modal-backdrop {
+          background-color: rgba(0, 0, 0, 0.4);
           animation: ${
             open ? "fadeIn" : "fadeOut"
           } ${ANIMATION_DURATION}ms ease-out forwards;
         }
-        
+
         .modal-content {
           animation: ${
-            open ? "scaleUp" : "scaleDown"
+            open ? "subtleScaleUp" : "subtleScaleDown"
           } ${ANIMATION_DURATION}ms ease-out forwards;
         }
       `}</style>

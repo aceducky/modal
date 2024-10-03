@@ -5,7 +5,7 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="grid place-items-center w-screen h-screen">
+    <div className="grid place-items-center w-screen h-screen bg-white">
       <button
         onClick={() => setIsOpen(true)}
         className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
