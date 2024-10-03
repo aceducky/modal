@@ -1,24 +1,28 @@
 import { useState } from "react";
 import Modal from "./Modal";
-function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+function App() {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold mb-4">Welcome to the Page</h1>
+    <div className="grid place-items-center w-screen h-screen">
       <button
-        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none"
-        onClick={openModal}
+        onClick={() => setIsOpen(true)}
+        className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
       >
         Open Modal
       </button>
 
-      <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
-        <h2 className="text-xl font-bold mb-4">Modal Dialog</h2>
-        <p>This is a modal. You can add more content here.</p>
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <p className="mb-4">
+          This modal uses simplified animations with CSS keyframes.
+        </p>
+        <button
+          onClick={() => setIsOpen(false)}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Close Modal
+        </button>
       </Modal>
     </div>
   );
