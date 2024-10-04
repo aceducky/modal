@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 
 const ANIMATION_DURATION = 150;
 
-function Modal({ portalId = "modal-root", open = false, onClose, children }) {
-  const [shouldMount, setShouldMount] = useState(open);
+function Modal({ portalId = "modal-root", isOpen = false, onClose, children }) {
+  const [shouldMount, setShouldMount] = useState(isOpen);
   const dialogRef = useRef(null);
 
   useEffect(() => {
-    if (open) {
+    if (isOpen) {
       setShouldMount(true);
       document.body.style.overflow = "hidden";
       dialogRef.current?.focus();
@@ -37,7 +37,7 @@ function Modal({ portalId = "modal-root", open = false, onClose, children }) {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [open, onClose]);
+  }, [isOpen, onClose]);
 
   if (!shouldMount) return null;
 
@@ -79,13 +79,13 @@ function Modal({ portalId = "modal-root", open = false, onClose, children }) {
         .modal-backdrop {
           background-color: rgba(0, 0, 0, 0.4);
           animation: ${
-            open ? "fadeIn" : "fadeOut"
+            isOpen ? "fadeIn" : "fadeOut"
           } ${ANIMATION_DURATION}ms ease-out forwards;
         }
 
         .modal-content {
           animation: ${
-            open ? "subtleScaleUp" : "subtleScaleDown"
+            isOpen ? "subtleScaleUp" : "subtleScaleDown"
           } ${ANIMATION_DURATION}ms ease-out forwards;
         }
       `}</style>
@@ -113,7 +113,7 @@ function Modal({ portalId = "modal-root", open = false, onClose, children }) {
               </svg>
             </button>
           </div>
-          <div className="p-6">{children}</div>
+          <div className="text-black p-6">{children}</div>
         </div>
       </div>
     </>,
